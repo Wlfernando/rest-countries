@@ -1,0 +1,22 @@
+#root {
+  width: clamp(320px, 100%, 1440px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+:root {
+  --txt-clr: hsl(200, 15%, 8%);
+  --inp-clr: hsl(0, 0%, 52%);
+  --bg-clr: hsl(0, 0%, 98%);
+  --el-clr: hsl(0, 0%, 100%);
+
+  color: var(--txt-clr);
+  background-color: var(--bg-clr);
+
+  @media (prefers-color-scheme: dark) {
+    --el-clr: hsl(209, 23%, 22%);
+    --bg-clr: hsl(207, 26%, 17%);
+    --txt-clr: hsl(0, 0%, 100%);
+  }
+}
