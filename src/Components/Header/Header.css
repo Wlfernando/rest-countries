@@ -1,0 +1,15 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 3rem;
+  background-color: var(--el-clr);
+  box-shadow: 0 2px 5px var(--bg-clr);
+
+  .header__title {
+    font-size: 1.75rem;
+  }
+
+  .header__button-txt {
+    text-transform: capitalize;
+  }
+}
