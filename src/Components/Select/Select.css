@@ -1,0 +1,61 @@
+.select {
+  display: grid;
+  position: relative;
+  border-color: transparent;
+
+  .label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+
+  .label, ul {
+    background-color: var(--el-clr);
+    border-radius: 7px;
+  }
+
+  .label, label {
+    padding-inline: 1rem;
+  }
+  
+  svg {
+    height: 17px;
+    aspect-ratio: 1;
+  }
+
+  ul {
+    grid-row: 2;
+    padding: 1rem 0;
+    margin: 0;
+    list-style: none;
+    position: absolute;
+    top: .5rem;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+  }
+
+  ul[inert] {
+    visibility: hidden;
+    display: none;
+  }
+
+  li {
+    display: grid;
+  }
+
+  label {
+    padding-block: .25rem;
+    cursor: pointer;
+
+    &:has(:checked), &:hover, &:focus-within {
+      background-color: var(--chk-clr);
+      color: var(--contrast);
+    }
+  }
+
+  input {
+    appearance: none;
+  }
+}
