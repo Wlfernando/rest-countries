@@ -6,7 +6,7 @@ export default function RootLayout() {
     <>
       <Header />
       <Outlet />
-      <footer>
+      <footer style={{padding: 2}}>
         <p style={{textAlign:"center"}}>
           Challenge by <a href="https://www.frontendmentor.io/">Frontendmentor</a>. &copy; 2024. Fernando A. Malfavón.
         </p>
