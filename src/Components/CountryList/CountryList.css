@@ -1,0 +1,50 @@
+.countries {
+  padding: 2rem;
+}
+
+.country-search {
+  form {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .search-field {
+    border-radius: 7px;
+    overflow: hidden;
+    display: flex;
+    background-color: var(--el-clr);
+    border-color: transparent;
+    padding: .5rem .75rem;
+    flex: 0 1 400px;
+  }
+
+  button {
+    display: grid;
+    place-items: center;
+  }
+
+  input {
+    background-color: transparent;
+    border-color: transparent;
+    padding-block: 0;
+    padding-inline: 0;
+    flex: 1 0;
+
+    &::placeholder {
+      color: inherit;
+    }
+  }
+
+  .region {
+    width: 250px;
+    height: 40px;
+  }
+
+  @media screen and (max-width: 600px) {
+    form {
+      display: grid;
+      place-content: center;
+    }
+  }
+}

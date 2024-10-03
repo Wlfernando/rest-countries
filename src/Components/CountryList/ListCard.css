@@ -1,0 +1,43 @@
+.country-list {
+  list-style: none;
+  padding-inline-start: 0;
+  margin: 2.5rem 0 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-between;
+
+  @media screen and (width < 620px) {
+    justify-content: center;
+  }
+}
+
+.card {
+  width: 270px;
+  display: grid;
+  gap: .5rem;
+  grid-template-columns: 1rem 1fr 1rem;
+  padding-bottom: 1.5rem;
+  background-color: var(--el-clr);
+  border-radius: 5px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    grid-column: 1 / -1;
+    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  & > :not(img) {
+    grid-column: 2;
+  }
+
+  h3 {
+    padding-block: .5rem;
+  }
+
+  span {
+    opacity: .7;
+  }
+}
