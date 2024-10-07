@@ -3,4 +3,10 @@
   color: inherit;
   border-color: transparent;
   cursor: pointer;
+  text-decoration: none;
+}
+
+.button_nav {
+  padding: .5rem 2rem;
+  box-shadow: 0 0 10px -1px rgba(0, 0, 0, 0.3);
 }
