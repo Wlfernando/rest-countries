@@ -28,3 +28,7 @@ html {
     --contrast: hsl(200, 15%, 8%);
   }
 }
+
+::view-transition-group(flag) {
+  animation-duration: 250ms;
+}

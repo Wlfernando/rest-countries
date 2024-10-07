@@ -1,9 +1,10 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, ScrollRestoration } from "react-router-dom";
 import Header from "../Header/Header";
 
 export default function RootLayout() {
   return (
     <>
+      <ScrollRestoration getKey={(location) => location.key} />
       <Header />
       <Outlet />
       <footer style={{padding: 2}}>
