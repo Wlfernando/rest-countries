@@ -1,12 +1,11 @@
-import { Form, Link, useLoaderData } from "react-router-dom";
+import { Form, useLoaderData } from "react-router-dom";
 import Button from "../Button/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import Select from "../Select/Select";
 import './CountryList.css'
-import './ListCard.css'
-import { setCommas } from "../../lib/utils";
 import { Countries } from "../../lib/types";
+import Card from "../Card/Card";
 
 export default function CountryList() {
   const countries = useLoaderData() as Countries
@@ -24,15 +23,7 @@ export default function CountryList() {
           </Form>
         </search>
         <ul className="country-list">
-          {countries.map(({name: { common, official }, population, region, capital, flags: {png, alt}}) => <li key={common}>
-            <article className="card">
-              <Link to={`/${official}`} ><img src={png} alt={alt} /></Link>
-              <h3>{common}</h3>
-              <p>Population: <span>{setCommas(population)}</span></p>
-              <p>Region: <span>{region}</span></p>
-              <p>Capital: <span>{capital}</span></p>
-            </article>
-          </li>)}
+          {countries.map((country) => <Card key={country.name.official} {...country} />)}
         </ul>
       </main>
     </>
