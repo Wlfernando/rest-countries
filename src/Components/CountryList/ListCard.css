@@ -7,7 +7,7 @@
   gap: 2rem;
   justify-content: space-between;
 
-  @media screen and (width < 620px) {
+  @media screen and (width < 636px) {
     justify-content: center;
   }
 }
@@ -25,11 +25,10 @@
   img {
     width: 100%;
     aspect-ratio: 3 / 2;
-    grid-column: 1 / -1;
     box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.3);
   }
 
-  & > :not(img) {
+  & > :not(a) {
     grid-column: 2;
   }
 
@@ -39,5 +38,10 @@
 
   span {
     opacity: .7;
+  }
+
+  a {
+    grid-column: 1 / -1;
+    text-decoration: none;
   }
 }

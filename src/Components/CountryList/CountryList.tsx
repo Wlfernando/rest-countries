@@ -1,4 +1,4 @@
-import { Form, useLoaderData } from "react-router-dom";
+import { Form, Link, useLoaderData } from "react-router-dom";
 import Button from "../Button/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
@@ -24,9 +24,9 @@ export default function CountryList() {
           </Form>
         </search>
         <ul className="country-list">
-          {countries.map(({name: { common }, population, region, capital, flags: {png, alt}}) => <li key={common}>
+          {countries.map(({name: { common, official }, population, region, capital, flags: {png, alt}}) => <li key={common}>
             <article className="card">
-              <img src={png} alt={alt} />
+              <Link to={`/${official}`} ><img src={png} alt={alt} /></Link>
               <h3>{common}</h3>
               <p>Population: <span>{setCommas(population)}</span></p>
               <p>Region: <span>{region}</span></p>
