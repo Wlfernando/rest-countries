@@ -3,7 +3,7 @@ import { Countries } from "./types"
 
 const BASE_URL = 'https://restcountries.com/v3.1/'
 const fields = '?fields=flags,name,population,region,capital'
-const extendedFields = fields + ',currencies,subregion,tld,currencies,languages,borders'
+const extendedFields = fields + ',currencies,subregion,tld,currencies,languages,borders&fullText=true'
 
 function confirm(res: Response) {
   if (res.ok) return res.json()
