@@ -2,15 +2,21 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './App.css'
 import RootLayout from './Components/RootLayout/RootLayout'
 import CountryList from './Components/CountryList/CountryList'
-import { getCountries } from './lib/api'
+import { getCountries, getTheCountry } from './lib/api'
+import DisplayCountry from './Components/DisplayCountry/DisplayCountry'
 
 const router = createBrowserRouter([{
   path: '/',
   element: <RootLayout />,
   children: [{
+    loader: getCountries,
+    shouldRevalidate: ({ nextUrl }) => nextUrl.pathname === '/',
     index: true,
     element: <CountryList />,
-    loader: getCountries,
+  },{
+    path: ':name',
+    loader: getTheCountry,
+    element: <DisplayCountry />
   }],
 }])
 

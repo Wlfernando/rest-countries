@@ -1,0 +1,95 @@
+.display-country {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 15% 1fr;
+  padding-inline: min(5%, 3rem);
+  gap: 1em;
+
+  > button {
+    place-self: center start;
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+  }
+  
+  > button svg {
+    width: 2em;
+    aspect-ratio: 16 / 9;
+  }
+
+  img {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+  }
+
+  article {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 3.5rem repeat(5, minmax(1.5rem, max-content));
+  }
+
+  h2, .sub-region, .capital, .border {
+    grid-column: 1 / -1;
+  }
+
+  span {
+    font-weight: 700;
+  }
+
+  .border {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: start;
+    gap: .25em;
+
+    > :first-child {
+      flex: 0 0 max-content;
+    }
+
+    > :not(:first-child) {
+      box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+      padding: 2px 1rem;
+      background-color: var(--el-clr);
+      font-weight: 300;
+    }
+
+    @media screen and (min-width: 1001px) {
+      padding-top: 5em;
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: max(10vw, 75px) auto 1fr;
+  }
+
+  @media screen and (max-width: 520px) {
+    article {
+      grid-template-columns: auto;
+      grid-template-rows: 2.5rem repeat(8, minmax(1.5rem, max-content));
+    }
+
+    .tld {
+      padding: 1rem 0 .2rem;
+      grid-row: 7;
+    }
+
+    .currencies {
+      grid-row: 8;
+    }
+
+    .languages {
+      grid-row: 9;
+    }
+
+    .border {
+      padding-block: 1rem;
+
+      > :first-child {
+        flex: 1 0 100%;
+        height: 2em;
+      }
+    }
+  }
+}
