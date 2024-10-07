@@ -1,14 +1,23 @@
+import { Params } from "react-router-dom"
 import { Countries } from "./types"
 
 const BASE_URL = 'https://restcountries.com/v3.1/'
-const fields = '?fields=name,capital,currencies,population,region,subregion,tld,currencies,languages,borders,flags'
+const fields = '?fields=flags,name,population,region,capital'
+const extendedFields = fields + ',currencies,subregion,tld,currencies,languages,borders'
+
+function confirm(res: Response) {
+  if (res.ok) return res.json()
+  return Promise.reject(`Error: ${res.status}`)
+}
+
+function getOne(params: string) {
+  return fetch(BASE_URL + params + extendedFields)
+    .then(confirm)
+}
 
 function get(params: string) {
   return fetch(BASE_URL + params + fields)
-    .then((res) => {
-      if (res.ok) return res.json()
-      return Promise.reject(`Error: ${res.status}`)
-    })
+    .then(confirm)
 }
 
 const firstCountries = ['germany', 'united states of america', 'brazil', 'iceland', 'afghanistan', 'Åland Islands', 'albania', 'algeria']
@@ -32,4 +41,8 @@ export async function getCountries({request}: {request: Request}): Promise<Count
   if(!country) return await get('all')
 
   return await get(`name/${country}`)
+}
+
+export async function getTheCountry({ params }: { params: Params<'name'> }) {
+  return await getOne(`name/${params.name!}`).then(res => res[0])
 }
