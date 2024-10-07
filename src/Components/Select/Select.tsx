@@ -47,7 +47,13 @@ export default function Select({
       window.removeEventListener('keydown', listen);
     }
   }, [inert])
-  
+
+  function handleSelect(target: EventTarget & (HTMLLabelElement | HTMLInputElement), input: string) {
+    setInert(!inert)
+    setRadio(input)
+    target.closest('form')!.requestSubmit()
+  }
+
   return (
     <>
       <fieldset 
@@ -72,18 +78,16 @@ export default function Select({
             if(isChecked) indexRef.current = i
 
             return <li key={i} >
-            <label tabIndex={0} onKeyDown={({ key }) => {
+            <label tabIndex={0} onKeyDown={({ key, currentTarget }) => {
               if (key !== 'Enter') return
-              setInert(!inert)
-              setRadio(o)
+              handleSelect(currentTarget, o)
             }}>
               <input 
                 type="radio"
                 name="region"
                 value={o.toLowerCase()}
-                onChange={() => {
-                  setRadio(o)
-                  setInert(!inert)
+                onChange={({ currentTarget }) => {
+                  handleSelect(currentTarget, o)
                 }}
                 tabIndex={-1}
                 checked={isChecked}
