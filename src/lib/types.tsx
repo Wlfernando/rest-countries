@@ -7,16 +7,19 @@ interface Currency {
 }
 
 interface Country {
-  borders: string[];
-  capital: string[];
-  currencies: {[key: string]: Currency};
-  flags: Record<Img, string>;
-  name: Record<Names, string>;
-  tld: string[];
+  name: Record<Names, string> & {nativeName: {[key: string]: {common: string, official: string}}};
+  population: number;
   region: string;
+  capital: string[];
+  flags: Record<Img, string>;
+}
+
+export interface ExtendedCountry extends Country {
+  borders: string[];
+  currencies: {[key: string]: Currency};
+  tld: string[];
   subregion: string;
   languages: {[key: string]: string};
-  population: number;
 }
 
 export type Countries = Country[];
