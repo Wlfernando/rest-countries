@@ -6,7 +6,7 @@ interface Currency {
   symbol: string;
 }
 
-interface Country {
+export interface Country {
   name: Record<Names, string> & {nativeName: {[key: string]: {common: string, official: string}}};
   population: number;
   region: string;
