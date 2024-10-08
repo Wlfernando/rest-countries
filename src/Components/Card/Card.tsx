@@ -10,7 +10,7 @@ export default function Card(
   capital,
   flags: {png, alt}
 }: Country) {
-  const to = `/${official.replace(/\s/g, '%20')}`
+  const to = `/${encodeURIComponent(official)}`
   const isTransitioning = unstable_useViewTransitionState(to)
 
   return (
