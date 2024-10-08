@@ -1,9 +1,10 @@
 import { Params } from "react-router-dom"
-import { Countries } from "./types"
+import { Countries, ExtendedCountry } from "./types"
 
 const BASE_URL = 'https://restcountries.com/v3.1/'
-const fields = '?fields=flags,name,population,region,capital'
-const extendedFields = fields + ',currencies,subregion,tld,currencies,languages,borders&fullText=true'
+const fields = '?fields=name'
+const fieldsOfCards = fields + ',flags,population,region,capital'
+const extendedFields = fieldsOfCards + ',currencies,subregion,tld,currencies,languages,borders&fullText=true'
 
 function confirm(res: Response) {
   if (res.ok) return res.json()
@@ -13,10 +14,16 @@ function confirm(res: Response) {
 function getOne(params: string) {
   return fetch(BASE_URL + params + extendedFields)
     .then(confirm)
+    .then(res => res[0])
 }
 
 function get(params: string) {
-  return fetch(BASE_URL + params + fields)
+  return fetch(BASE_URL + params + fieldsOfCards)
+    .then(confirm)
+}
+
+function getByAlpha(code: string) {
+  return fetch(BASE_URL + `alpha${fields}&codes=${code}` )
     .then(confirm)
 }
 
@@ -44,5 +51,9 @@ export async function getCountries({request}: {request: Request}): Promise<Count
 }
 
 export async function getTheCountry({ params }: { params: Params<'name'> }) {
-  return await getOne(`name/${params.name!}`).then(res => res[0])
+  const country: ExtendedCountry = await getOne(`name/${params.name!}`)
+  const { borders: bor } = country
+  const borders = bor.length ? await getByAlpha(bor.join(',')) : []
+
+  return { country, borders }
 }

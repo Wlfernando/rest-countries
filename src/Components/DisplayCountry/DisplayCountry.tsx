@@ -1,22 +1,22 @@
 import './DisplayCountry.css';
 import Button from '../Button/Button';
-import { useLoaderData, useNavigate } from 'react-router-dom';
+import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import { ExtendedCountry } from '../../lib/types';
 import { setCommas } from '../../lib/utils';
 
 export default function DisplayCountry(){
   const {
-    flags: { svg, alt },
-    name: { common, nativeName },
-    tld,
-    population,
-    currencies,
-    region,
-    languages,
-    subregion,
-    capital,
-    borders,
-  } = useLoaderData() as ExtendedCountry
+    country: {
+      flags: { svg, alt },
+      name: { common, nativeName },
+      tld,
+      population,
+      currencies,
+      region,
+      languages,
+      subregion,
+      capital,
+    }, borders } = useLoaderData() as {country: ExtendedCountry, borders: Pick<ExtendedCountry, 'name'>[]}
   const navigate = useNavigate()
 
   return (
@@ -65,7 +65,7 @@ export default function DisplayCountry(){
           </p>
           <p className='border' >
             <span>Border countries: </span>
-            {borders.map((b) => <span key={b} >{b}</span>)}
+            {borders.map((b) => <Link key={b.name.common} to={'/' + b.name.official.replace(/\s/g, '%20')} >{b.name.common}</Link>)}
           </p>
         </article>
       </main>
