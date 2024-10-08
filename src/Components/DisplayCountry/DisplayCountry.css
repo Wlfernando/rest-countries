@@ -70,7 +70,7 @@
   @media screen and (max-width: 520px) {
     article {
       grid-template-columns: auto;
-      grid-template-rows: 2.5rem repeat(8, minmax(1.5rem, max-content));
+      grid-template-rows: minmax(2.5rem, max-content) repeat(8, minmax(1.5rem, max-content));
     }
 
     .tld {
