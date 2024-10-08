@@ -1,0 +1,11 @@
+.footer {
+  padding: 2px;
+
+  p {
+    text-align: center;
+  }
+
+  @media screen and (width < 500px) {
+    font-size: .75em;
+  }
+}

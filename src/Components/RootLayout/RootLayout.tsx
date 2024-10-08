@@ -1,5 +1,6 @@
 import { Outlet, ScrollRestoration } from "react-router-dom";
 import Header from "../Header/Header";
+import './RootLayout.css'
 
 export default function RootLayout() {
   return (
@@ -7,8 +8,8 @@ export default function RootLayout() {
       <ScrollRestoration getKey={(location) => location.key} />
       <Header />
       <Outlet />
-      <footer style={{padding: 2}}>
-        <p style={{textAlign:"center"}}>
+      <footer className="footer">
+        <p>
           Challenge by <a href="https://www.frontendmentor.io/">Frontendmentor</a>. &copy; 2024. Fernando A. Malfavón.
         </p>
       </footer>

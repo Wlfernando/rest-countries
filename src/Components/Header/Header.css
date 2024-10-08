@@ -4,6 +4,7 @@
   padding: 1rem 3rem;
   background-color: var(--el-clr);
   box-shadow: 0 2px 5px var(--bg-clr);
+  align-items: center;
 
   .header__title {
     font-size: 1.75rem;
@@ -11,5 +12,13 @@
 
   .header__button-txt {
     text-transform: capitalize;
+  }
+
+  @media screen and (width < 500px) {
+    padding-inline: 1.5em;
+
+    .header__title, .header__button-txt {
+      font-size: 1em;
+    }
   }
 }

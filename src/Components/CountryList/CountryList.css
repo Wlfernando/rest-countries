@@ -1,5 +1,9 @@
 .countries {
-  padding: 2rem;
+  padding: 2em 0;
+
+  @media screen and (width > 571px) {
+    padding: 2em;
+  }
 }
 
 .country-search {
