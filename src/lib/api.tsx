@@ -40,7 +40,10 @@ export async function getCountries({request}: {request: Request}): Promise<Count
   if(search.has('region')) {
     const region = await getSummarizedCountries(`region/${search.get('region')}`)
 
-    if(country) return region.filter(({name: {common}}) => common.includes(country))
+    if(country) {
+      const regex = new RegExp(country, 'i')
+      return region.filter(({name: {common}}) => regex.test(common))
+    }
 
     return region
   }
