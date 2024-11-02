@@ -42,7 +42,11 @@ export async function getCountries({request}: {request: Request}): Promise<Count
 
     if(country) {
       const regex = new RegExp(country, 'i')
-      return region.filter(({name: {common}}) => regex.test(common))
+      const filtered = region.filter(({name: {common}}) => regex.test(common))
+
+      if (!filtered.length) return Promise.reject()
+        
+      return filtered
     }
 
     return region
