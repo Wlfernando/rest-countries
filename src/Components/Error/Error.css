@@ -1,0 +1,31 @@
+.error-message {
+  display: grid;
+  grid-template-columns: minmax(250px, 30%);
+  place-content: start center;
+  gap: 2rem;
+  margin-top: min(5vw, 3rem);
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 12px;
+  }
+
+  p {
+    font-size: 1.25rem;
+  }
+
+  @media screen and (width < 500px) {
+    h2 {
+      font-size: 1.25rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+  }
+}
