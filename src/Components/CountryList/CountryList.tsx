@@ -6,6 +6,10 @@ import Select from "../Select/Select";
 import './CountryList.css'
 import { Countries } from "../../lib/types";
 import Card from "../Card/Card";
+import Debounce from "../../lib/Debounce/Debounce";
+
+const submit = (target: HTMLInputElement) => target.closest('form')!.requestSubmit()
+const { init, clear } = new Debounce(submit)
 
 export default function CountryList() {
   const countries = useLoaderData() as Countries
@@ -14,10 +18,17 @@ export default function CountryList() {
     <>
       <main className="countries">
         <search role="search" className="country-search">
-          <Form >
+          <Form onSubmit={clear} >
             <fieldset className="search-field">
               <Button type='submit'><FontAwesomeIcon icon={faMagnifyingGlass} /></Button>
-              <input type="text" name="country" placeholder="Search for a country..."/>
+              <input
+                type="text"
+                name="country"
+                placeholder="Search for a country..."
+                onChange={({ currentTarget }) => {
+                  init(currentTarget)
+                }}
+              />
             </fieldset>
             <Select className="region" leyend='Filter by Region' options={['Africa', 'America', 'Asia', 'Europe', 'Oceania']}/>
           </Form>
