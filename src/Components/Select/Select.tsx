@@ -24,21 +24,40 @@ export default function Select({
     const children = listRef.current!.children
     const length = children.length - 1
     const focus = (index: number) => (children[index].firstElementChild as HTMLElement)!.focus()
-    let index = indexRef.current
 
     const listen = (e: KeyboardEvent) => {
       const { key } = e
       const arrowUp = key === 'ArrowUp'
       const arrowDown = key === 'ArrowDown'
+      const home = key === 'Home'
+      const end = key === 'End'
+      const escape = key === 'Escape'
 
-      if (arrowUp || arrowDown) e.preventDefault()
-
-      if (arrowUp && index > 0) {
-        focus(--index)
+      if (arrowUp || arrowDown || home || end) e.preventDefault()
+      else if (escape) {
+        indexRef.current = -1
+        setInert(true)
+        return
       }
 
-      if (arrowDown && index < length) {
-        focus(++index)
+      if (arrowUp && indexRef.current > 0) {
+        focus(--indexRef.current)
+        return
+      } else if (arrowUp) return
+
+      if (arrowDown && indexRef.current < length) {
+        focus(++indexRef.current)
+        return
+      } else if (arrowDown) return
+
+      if (home) {
+        focus(indexRef.current = 0)
+        return
+      }
+
+      if (end) {
+        focus(indexRef.current = length)
+        return
       }
     }
 
@@ -48,10 +67,13 @@ export default function Select({
     }
   }, [inert])
 
-  function handleSelect(target: EventTarget & (HTMLLabelElement | HTMLInputElement), input: string) {
-    setInert(!inert)
+  useEffect(() => {
+    if (radio !== leyend) listRef.current!.closest('form')?.requestSubmit()
+  }, [radio])
+
+  function handleSelect(input: string) {
     setRadio(input)
-    target.closest('form')!.requestSubmit()
+    setInert(!inert)
   }
 
   return (
@@ -75,19 +97,24 @@ export default function Select({
         <ul role="radiogroup" ref={listRef}>
           {options.map((o, i) => {
             const isChecked = o === radio
-            if(isChecked) indexRef.current = i
 
             return <li key={i} >
-            <label tabIndex={0} onKeyDown={({ key, currentTarget }) => {
-              if (key !== 'Enter') return
-              handleSelect(currentTarget, o)
-            }}>
+            <label
+              tabIndex={0}
+              onKeyDown={({ key }) => {
+                if (key !== 'Enter') return
+                handleSelect(o)
+              }}
+              onFocus={() => {
+                indexRef.current = i
+              }}
+            >
               <input 
                 type="radio"
                 name="region"
                 value={o.toLowerCase()}
-                onChange={({ currentTarget }) => {
-                  handleSelect(currentTarget, o)
+                onChange={() => {
+                  handleSelect(o)
                 }}
                 tabIndex={-1}
                 checked={isChecked}
