@@ -4,7 +4,7 @@ This project focus on view transition api. Whenever a flag is clicked, the trans
 
 The eight flags are intentionally loaded with the home page as the photo points. 
 
-The searcher has a debounce of 1 second per click. This avoid unnecessary calls to the api. this could be improve adding an aborting signal in the feature. The select option is a made hand to personalize the style, it consider accesibility. If nothing found, the site send us to error handler page.
+The searcher has a debounce of 1 second per click. This avoid unnecessary calls to the api. It could be improve adding an aborting signal in the feature. The select option is a made hand to personalize the style, it consider accesibility. If nothing found, the site send us to error handler page.
 
 Once a valid name country is writed or select one option in the selector, the site filter the cards consulting the rest country api.
 
