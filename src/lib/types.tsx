@@ -1,25 +1,43 @@
-type Img = 'png' | 'svg' | 'alt';
+type Img = 'png' | 'alt';
 type Names = 'common' | 'official';
+type Capitals = {
+  attributes: Record<"administrative" | "constitutional" | "executive" | "judicial" | "legislative" | "primary", boolean>;
+  coordinates: Record<"lat" | "lng", number>;
+  name: string;
+}
 
 interface Currency {
   name: string;
   symbol: string;
 }
 
-export interface Country {
-  name: Record<Names, string> & {nativeName: {[key: string]: {common: string, official: string}}};
+export type Country = {
+  name: Record<Names, string>;
   population: number;
   region: string;
-  capital: string[];
+  capital: string;
   flags: Record<Img, string>;
 }
 
-export interface ExtendedCountry extends Country {
+export type ExtendedCountry = Omit<Country, "flags"> & {
+  name: {nativeName: {[key: string]: {common: string, official: string}}};
   borders: string[];
   currencies: {[key: string]: Currency};
-  tld: string[];
+  tlds: string[];
   subregion: string;
-  languages: {[key: string]: string};
+  languages: string[];
+  flags: Record<'svg' | 'alt', string>;
 }
 
 export type Countries = Country[];
+
+export type RawApiCountry = {
+  names: Record<Names, string>,
+  capitals: Capitals[],
+  flag: {
+    ["url_png"]: string,
+    description: string,
+  },
+  region: string,
+  population: number,
+};
