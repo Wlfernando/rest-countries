@@ -98,9 +98,9 @@ function getSummarizedCountries(params: string | undefined = undefined): Promise
 }
 
 function getCountryBorders(code: string) {
-  return fetch(BASE_URL + '/borders/' + code + '?response_fields=names.common,codes.alpha_3', options)
+  return fetch(BASE_URL + '/borders/' + code + '?response_fields=names.common,names.official', options)
     .then(confirm)
-    .then(({ data: { objects }}) => objects.map((border: Pick<RawApiExtendedCountry, 'names' | 'codes'>) => ({ name: border.names, code: border.codes['alpha_3'] })))
+    .then(({ data: { objects }}) => objects.map((border: Pick<RawApiExtendedCountry, 'names'>) => ({ name: border.names })))
 }
 
 const defaultCountries = [

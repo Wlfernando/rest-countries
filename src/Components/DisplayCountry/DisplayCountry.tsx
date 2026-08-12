@@ -16,7 +16,7 @@ export default function DisplayCountry(){
       languages,
       subregion,
       capital,
-    }, borders } = useLoaderData() as {country: ExtendedCountry, borders: Pick<ExtendedCountry, 'name' | 'code'>[]}
+    }, borders } = useLoaderData() as {country: ExtendedCountry, borders: Pick<ExtendedCountry, 'name'>[]}
   const navigate = useNavigate()
 
   return (
@@ -65,7 +65,7 @@ export default function DisplayCountry(){
           </p>
           <p className='border' >
             <span>Border countries: </span>
-            {borders.map((b) => <Link key={b.code} to={'/' + encodeURIComponent(b.code)} >{b.name.common}</Link>)}
+            {borders.map((b) => <Link key={b.name.common} to={'/' + encodeURIComponent(b.name.official)} >{b.name.common}</Link>)}
           </p>
         </article>
       </main>
