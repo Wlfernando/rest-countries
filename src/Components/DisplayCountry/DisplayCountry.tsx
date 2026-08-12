@@ -8,7 +8,7 @@ export default function DisplayCountry(){
   const {
     country: {
       flags: { svg, alt },
-      name: { common, nativeName },
+      name: { common, native },
       tld,
       population,
       currencies,
@@ -16,7 +16,7 @@ export default function DisplayCountry(){
       languages,
       subregion,
       capital,
-    }, borders } = useLoaderData() as {country: ExtendedCountry, borders: Pick<ExtendedCountry, 'name'>[]}
+    }, borders } = useLoaderData() as {country: ExtendedCountry, borders: Pick<ExtendedCountry, 'name' | 'code'>[]}
   const navigate = useNavigate()
 
   return (
@@ -33,7 +33,7 @@ export default function DisplayCountry(){
           <h2>{common}</h2>
           <p>
             <span>Native Name: </span>
-            {Object.values(nativeName)[0].common}
+            {Object.values(native)[0].common}
           </p>
           <p className='tld'>
             <span>Top Level Domain: </span>
@@ -53,7 +53,7 @@ export default function DisplayCountry(){
           </p>
           <p className='languages'>
             <span>Languages: </span>
-            {Object.values(languages).join(', ')}
+            {languages.join(', ')}
           </p>
           <p className='sub-region' >
             <span>Sub Region: </span>
@@ -65,7 +65,7 @@ export default function DisplayCountry(){
           </p>
           <p className='border' >
             <span>Border countries: </span>
-            {borders.map((b) => <Link key={b.name.common} to={'/' + encodeURIComponent(b.name.official)} >{b.name.common}</Link>)}
+            {borders.map((b) => <Link key={b.code} to={'/' + encodeURIComponent(b.code)} >{b.name.common}</Link>)}
           </p>
         </article>
       </main>

@@ -5,6 +5,12 @@ type Capitals = {
   coordinates: Record<"lat" | "lng", number>;
   name: string;
 }
+type Native = {
+  [key: string]: {
+    common: string;
+    official: string;
+  };
+}
 
 interface Currency {
   name: string;
@@ -20,13 +26,14 @@ export type Country = {
 }
 
 export type ExtendedCountry = Omit<Country, "flags"> & {
-  name: {nativeName: {[key: string]: {common: string, official: string}}};
+  name: {native: {[key: string]: {common: string, official: string}}};
   borders: string[];
   currencies: {[key: string]: Currency};
-  tlds: string[];
+  tld: string[];
   subregion: string;
   languages: string[];
   flags: Record<'svg' | 'alt', string>;
+  code: string;
 }
 
 export type Countries = Country[];
@@ -41,3 +48,20 @@ export type RawApiCountry = {
   region: string,
   population: number,
 };
+
+export type RawApiExtendedCountry = Omit<RawApiCountry, 'flag'> & {
+  names: {
+    native: Native;
+  };
+  capitals: Capitals[];
+  flag: {
+    description: string;
+    ['url_svg']: string;
+  };
+  subregion: string;
+  borders: string[];
+  currencies: Record<'code' | 'name' | 'symbol', string>[];
+  languages: Record<"bcp47" | "iso639_1" | "iso639_2b" | "iso639_2t" | "iso639_3" | "name" | "native_name", string>[];
+  tlds: string[];
+  codes: { ['alpha_3']: string },
+}
