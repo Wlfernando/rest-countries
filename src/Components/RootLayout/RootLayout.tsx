@@ -10,7 +10,7 @@ export default function RootLayout() {
       <Outlet />
       <footer className="footer">
         <p>
-          Challenge by <a href="https://www.frontendmentor.io/">Frontendmentor</a>. &copy; 2024. Fernando A. Malfavón.
+          Challenge by <a href="https://www.frontendmentor.io/">Frontendmentor</a>. &copy; 2026. Fernando A. Malfavón.
         </p>
       </footer>
     </>
