@@ -12,11 +12,14 @@ Once a valid country name is entered or an option is selected from the dropdown,
 
 By clicking on a card's image, the user will be taken to a new page with the country's description and links to its bordering countries.
 
+The development went through by simplifying the components requiring the less html tags and dependencies following the principle DRY and KISS.
+
 ## Table of content
 
 - [Overview](#overview)
   - [The challenge](#the-challenge)
-  - [Maintenence](#maitenence)
+  - [Stack](#stack)
+  - [Maintenance](#maintenance)
 
 ## Overview
 
@@ -31,6 +34,17 @@ By clicking on a card's image, the user will be taken to a new page with the cou
 - See hover and focus states for all interactive elements on the page
 - Bonus: Toggle the color scheme between light and dark mode
 
-### Maintenence
+### Stack
+
+-Typescript
+-HOC pattern
+-Class (debounce)
+-React
+-Nest CSS, queries and variables
+-React-Router-Dom
+-Vite
+-Font Awsome
+
+### Maintenance
 
 First, the types were updated to facilitate the abstraction and organization for the API module, a pattern known as “ports”. Second, changes were manages to minimize the impact on other modules, update the requirements requested by REST Countries for implementing an API key and the new way to handle the endpoints. Each endpoint ensures the necessary data requested for each view.
