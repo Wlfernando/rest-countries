@@ -36,14 +36,14 @@ The development went through by simplifying the components requiring the less ht
 
 ### Stack
 
--Typescript
--HOC pattern
--Class (debounce)
--React
--Nest CSS, queries and variables
--React-Router-Dom
--Vite
--Font Awsome
+- Typescript
+- HOC pattern
+- Class (debounce)
+- React
+- Nest CSS, queries and variables
+- React-Router-Dom
+- Vite
+- Font Awsome
 
 ### Maintenance
 
